@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
 """
-Created on Sat Sep 23 13:35:41 2021
+Created on Sat Oct 23 13:35:41 2021
 
 @author: pcochang
 """
 
 import socket
+import signal
 import time
 
 host = 'replace with ip of server (raspi with camera)'
@@ -19,9 +20,10 @@ def setupClient_to_ServerConnection():
     s.connect((host,port))
     return s
     
+def handler(signum, frame):
+    raise Exception()
+signal.signal(signal.SIGALRM, handler) 
 
-    
-    
 while True:
     try: 
         s = setupClient_to_ServerConnection()
@@ -30,7 +32,10 @@ while True:
         s.send(str.encode(client_data)
        
         # this line is where the client hear back from server
+        signal.alarm(120) #set timer to 2mins if the server took long to send data - redo the connection
         lettuce_area = s.recv(1024)
+        signal.alarm(0)
+       
         s.close()
         print("Data from server (lettuce area): ",lettuce_area.decode('utf-8'))
         
@@ -40,5 +45,3 @@ while True:
         time.sleep(execution_wait_time)
     except:
         time.sleep(1)
-        
-    
