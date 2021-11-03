@@ -37,7 +37,7 @@ def read_ph_ec():
 	adc1 = ads1115.readVoltage(1)
 	#Convert voltage to EC with temperature compensation
 	EC = ec.readEC(adc0['r'],temperature)
-	PH = ph.readPH(adc1['r'])
+	PH = ph.readPH(adc1['r']*100)
 	print("Temperature:%.1f ^C EC:%.2f ms/cm PH:%.2f " %(temperature,EC,PH))
 	return temperature, EC, PH
 
