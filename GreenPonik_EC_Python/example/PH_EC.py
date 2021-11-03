@@ -1,8 +1,8 @@
 import time
 import sys
-sys.path.insert(0,'DFRobot_ADS1115/RaspberryPi/Python/')
-sys.path.insert(0,'GreenPonik_EC_Python/src/')
-sys.path.insert(0,'GreenPonik_PH_Python/src/')
+sys.path.insert(0,'Aquaponics/DFRobot_ADS1115/RaspberryPi/Python/')
+sys.path.insert(0,'Aquaponics/GreenPonik_EC_Python/src/')
+sys.path.insert(0,'Aquaponics/GreenPonik_PH_Python/src/')
 
 
 ADS1115_REG_CONFIG_PGA_6_144V        = 0x00 # 6.144V range = Gain 2/3
