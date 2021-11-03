@@ -1,5 +1,5 @@
 import sys
-sys.path.insert(0,'DFRobot_ADS1115/RaspberryPi/Python/')
+sys.path.insert(0,'Aquaponics/DFRobot_ADS1115/RaspberryPi/Python/')
 import time
 ADS1115_REG_CONFIG_PGA_6_144V        = 0x00 # 6.144V range = Gain 2/3
 ADS1115_REG_CONFIG_PGA_4_096V        = 0x02 # 4.096V range = Gain 1
