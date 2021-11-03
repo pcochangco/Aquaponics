@@ -1,7 +1,7 @@
 import time
 import sys
-sys.path.insert(0,'DFRobot_ADS1115/RaspberryPi/Python/')
-sys.path.insert(0,'GreenPonik_EC_Python/src/')
+sys.path.insert(0,'Aquaponics/DFRobot_ADS1115/RaspberryPi/Python/')
+sys.path.insert(0,'Aquaponics/GreenPonik_EC_Python/src/')
 
 from DFRobot_ADS1115 import ADS1115
 from GreenPonik_EC import GreenPonik_EC
