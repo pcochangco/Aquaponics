@@ -29,7 +29,7 @@ def read_ph():
     # Get the Digital Value of Analog of selected channel
     adc1 = ads1115.readVoltage(1)
     # Convert voltage to pH
-    PH = ph.readPH(adc1['r']*1000)
+    PH = ph.readPH(adc1['r']*100)
     print("PH:%.2f " % (PH))
     return PH
 
