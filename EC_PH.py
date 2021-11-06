@@ -73,7 +73,7 @@ def read_ph_ec():
 
 
 ads1115 = ADS1115()
-GPIO_init():
+GPIO_init()
 input("Connect EC sensor Vdd pin to pin 16 of raspberry pi. GND pin to any ground of raspi. Press Enter to continue")
 print("")
 input("Connect PH sensor Vdd pin to pin 18 of raspberry pi. GND pin to any ground of raspi. Press Enter to continue")
