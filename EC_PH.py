@@ -8,7 +8,6 @@ Created on Sat Nov  6 15:27:05 2021
 import time
 import sys
 import RPi.GPIO as GPIO 
-import sleep
 GPIO.setmode(GPIO.BOARD)
 GPIO.setwarnings(False)
 
