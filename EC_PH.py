@@ -39,8 +39,7 @@ def readEC(voltage, temperature = 25):
     value = value / (1.0+0.0185*(temperature-25.0))
     return value
 
-
- def readPH(voltage):
+def readPH(voltage):
     # pH 4.0
     _acidVoltage = 2032.44
     # pH 7.0
@@ -49,7 +48,6 @@ def readEC(voltage, temperature = 25):
     intercept = 7.0 - slope*(_neutralVoltage-1500.0)/3.0
     _phValue = slope*(voltage-1500.0)/3.0+intercept
     return round(_phValue, 2)
-
 
 def read_ph_ec():
     global ads1115
