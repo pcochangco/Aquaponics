@@ -45,34 +45,33 @@ def readEC(voltage, temperature = 25):
     _acidVoltage = 2032.44
     # pH 7.0
     _neutralVoltage = 1500.0
-    slope = (7.0-4.0)/((_neutralVoltage-1500.0) /
-                       3.0 - (_acidVoltage-1500.0)/3.0)
+    slope = (7.0-4.0)/((_neutralVoltage-1500.0) / 3.0 - (_acidVoltage-1500.0)/3.0)
     intercept = 7.0 - slope*(_neutralVoltage-1500.0)/3.0
     _phValue = slope*(voltage-1500.0)/3.0+intercept
     return round(_phValue, 2)
 
 
 def read_ph_ec():
-	global ads1115
-	temperature = 25 # or make your own temperature read process
-	#Set the IIC address
-	ads1115.setAddr_ADS1115(0x48)
-	#Sets the gain and input voltage range.
-	ads1115.setGain(ADS1115_REG_CONFIG_PGA_6_144V)
-	#Get the Digital Value of Analog of selected channel
-	adc0 = ads1115.readVoltage(0)
-	adc1 = ads1115.readVoltage(1)
-	#Convert voltage to EC with temperature compensation
+    global ads1115
+    temperature = 25 # or make your own temperature read process
+    #Set the IIC address
+    ads1115.setAddr_ADS1115(0x48)
+    #Sets the gain and input voltage range.
+    ads1115.setGain(ADS1115_REG_CONFIG_PGA_6_144V)
+    #Get the Digital Value of Analog of selected channel
+    adc0 = ads1115.readVoltage(0)
+    adc1 = ads1115.readVoltage(1)
+    #Convert voltage to EC with temperature compensation
     GPIO.output(16,1 )
     time.sleep(0.1)
-	EC = readEC(adc0['r'],temperature)
+    EC = readEC(adc0['r'],temperature)
     GPIO.output(16,0 )
     GPIO.output(18,1 )
     time.sleep(0.1)
-	PH = readPH(adc1['r'])
+    PH = readPH(adc1['r'])
     GPIO.output(18,0 )
-	print("Temperature:%.1f ^C EC:%.2f ms/cm PH:%.2f " %(temperature,EC,PH))
-	return temperature, EC, PH
+    print("Temperature:%.1f ^C EC:%.2f ms/cm PH:%.2f " %(temperature,EC,PH))
+    return temperature, EC, PH
 
 
 ads1115 = ADS1115()
