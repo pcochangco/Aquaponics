@@ -55,6 +55,8 @@ def read_ph_ec():
     return temperature, EC, PH
 
 GPIO_init()
+input("Connect EC sensor Vdd pin to pin 16 of raspberry pi. GND pin to any ground of raspi. Press Enter to continue")
+input("Connect PH sensor Vdd pin to pin 18 of raspberry pi. GND pin to any ground of raspi. Press Enter to continue")
 if __name__ == "__main__":
     while True:
         read_ph_ec()
