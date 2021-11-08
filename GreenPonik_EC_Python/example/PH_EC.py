@@ -1,5 +1,10 @@
 import time
 import sys
+import RPi.GPIO as GPIO
+GPIO.setmode(GPIO.BOARD)
+GPIO.setwarnings(False)
+
+
 sys.path.insert(0,'Aquaponics/DFRobot_ADS1115/RaspberryPi/Python/')
 sys.path.insert(0,'Aquaponics/GreenPonik_EC_Python/src/')
 sys.path.insert(0,'Aquaponics/GreenPonik_PH_Python/src/')
