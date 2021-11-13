@@ -56,17 +56,16 @@ def read_ph_ec():
     #Sets the gain and input voltage range.
     ads1115.setGain(ADS1115_REG_CONFIG_PGA_6_144V)
     #Get the Digital Value of Analog of selected channel
-    adc0 = ads1115.readVoltage(0)
-    adc1 = ads1115.readVoltage(1)
-    #Convert voltage to EC with temperature compensation
     GPIO.output(16,1 )
-    time.sleep(0.1)
-    EC = readEC(adc0['r'],temperature)
+    time.sleep(0.5)
+    adc0 = ads1115.readVoltage(0)
     GPIO.output(16,0 )
     GPIO.output(18,1 )
-    time.sleep(0.1)
+    time.sleep(0.5)
+    adc1 = ads1115.readVoltage(1)
+    #Convert voltage to EC with temperature compensation
+    EC = readEC(adc0['r'],temperature)
     PH = readPH(adc1['r'])
-    GPIO.output(18,0 )
     print("Temperature:%.1f ^C EC:%.2f ms/cm PH:%.2f " %(temperature,EC,PH))
     return temperature, EC, PH
 
