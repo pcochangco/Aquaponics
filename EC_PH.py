@@ -63,6 +63,7 @@ def read_ph_ec():
     GPIO.output(18,1 )
     time.sleep(0.5)
     adc1 = ads1115.readVoltage(1)
+    GPIO.output(18,0 )
     #Convert voltage to EC with temperature compensation
     EC = readEC(adc0['r'],temperature)
     PH = readPH(adc1['r'])
