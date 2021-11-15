@@ -7,21 +7,11 @@ Created on Sat Nov  6 15:27:05 2021
 
 import time
 import sys
-import RPi.GPIO as GPIO 
-GPIO.setmode(GPIO.BOARD)
-GPIO.setwarnings(False)
 
 sys.path.insert(0,'Aquaponics/DFRobot_ADS1115/RaspberryPi/Python/')
 from DFRobot_ADS1115 import ADS1115
 
-
 ADS1115_REG_CONFIG_PGA_6_144V        = 0x00 # 6.144V range = Gain 2/3
-
-def GPIO_init():
-    EC_PWR = 16
-    PH_PWR = 18
-    GPIO.setup (EC_PWR, GPIO.OUT, initial=GPIO.LOW) 
-    GPIO.setup (PH_PWR, GPIO.OUT, initial=GPIO.LOW)
     
 def readEC(voltage, temperature = 25):
     _kvalue = 1.0
@@ -56,14 +46,10 @@ def read_ph_ec():
     #Sets the gain and input voltage range.
     ads1115.setGain(ADS1115_REG_CONFIG_PGA_6_144V)
     #Get the Digital Value of Analog of selected channel
-    GPIO.output(16,1 )
-    time.sleep(0.5)
+    time.sleep(0.1)
     adc0 = ads1115.readVoltage(0)
-    GPIO.output(16,0 )
-    GPIO.output(18,1 )
-    time.sleep(0.5)
+    time.sleep(0.1)
     adc1 = ads1115.readVoltage(1)
-    GPIO.output(18,0 )
     #Convert voltage to EC with temperature compensation
     EC = readEC(adc0['r'],temperature)
     PH = readPH(adc1['r'])
@@ -73,9 +59,6 @@ def read_ph_ec():
 
 ads1115 = ADS1115()
 GPIO_init()
-#input("Connect EC sensor Vdd pin to pin 16 of raspberry pi. GND pin to any ground of raspi. Press Enter to continue")
-print("")
-#input("Connect PH sensor Vdd pin to pin 18 of raspberry pi. GND pin to any ground of raspi. Press Enter to continue")
 if __name__ == "__main__":
     while True:
         read_ph_ec()
